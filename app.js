@@ -1,8 +1,6 @@
 // // <!-- //Before you can make any part of your site work, you need to create an array of strings, each one related to a topic that
 // interests you.Save it to a variable called topics.
 
-// We chose animals for our theme, but you can make a list to your own liking.
-
 // Your app should take the topics in this array and create buttons in your HTML.
 
 // Try using a loop that appends a button for each string in the array.
@@ -24,4 +22,17 @@
 // Deploy your assignment to Github Pages.
 //     Rejoice! You just made something really cool. -- >
 
-var topics = ["Louis Vuitton" , "Chanel", "Fendi", "Moschino" , "Gucci~"]
+var topics = ["Louis Vuitton" , "Chanel", "Fendi", "Moschino" , "Gucci"];
+
+
+// Your app should take the topics in this array and create buttons in your HTML.
+var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FmlEOGsL33Fa0IBUgxcI5J9meYsV0kkK&q=&limit=25&offset=0&rating=G&lang=en";
+
+$.ajax({
+    url: queryURL,
+    method: "GET"
+}).then(function (response) {
+    console.log(response);
+});
+
+
