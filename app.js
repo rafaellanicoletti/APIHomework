@@ -49,6 +49,23 @@ for (var i = 0; i < topics.length; i++) {
 }
       }
 
+// When the user clicks on a button, the page should grab 10 static, non - animated gif images from the GIPHY API and place
+// them on the page.
+
+// This function handles events where one button is clicked
+$("#add-topic").on("click", function (event) {
+    // event.preventDefault() prevents the form from trying to submit itself.
+    // We're using a form so that the user can hit enter instead of clicking the button if they want
+    event.preventDefault();
+
+    // This line will grab the text from the input box
+    var movie = $("#movie-input").val().trim();
+    // The movie from the textbox is then added to our array
+    movies.push(movie);
+
+    // calling renderButtons which handles the processing of our movie array
+    renderButtons();
+});
 
 
 
