@@ -21,7 +21,7 @@ var topics = ["Louis Vuitton" , "Chanel", "Fendi", "Moschino" , "Gucci"];
 
 
 // API key.
-var APIKey = FmlEOGsL33Fa0IBUgxcI5J9meYsV0kkK;
+var APIKey = "FmlEOGsL33Fa0IBUgxcI5J9meYsV0kkK";
 var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FmlEOGsL33Fa0IBUgxcI5J9meYsV0kkK&q=&limit=25&offset=0&rating=G&lang=en";
 
 $.ajax({
@@ -36,13 +36,14 @@ $.ajax({
 
 function btnCreation() {
 
-// Looping through the array of movies
-for (var i = 0; i < topics.length; i++) {
-    // Then dynamicaly generating buttons for each movie in the array.
+    $("#buttons-view").empty();
+
+    // Looping through the array of movies
+    for (var i = 0; i < topics.length; i++) {
     var btn = $("<button type='button' class='btn btn-outline-*'>");
     // Adding a data-attribute with a value of the movie at index i
     btn.attr("data-name", topics[i]);
-    btn.text(movies[i]);
+    btn.html(topics[i]);
     // Adding the button to the HTML
     $("#buttons-view").append(btn);
 }
