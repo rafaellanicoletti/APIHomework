@@ -40,16 +40,16 @@ $("#topic-input").on("click", function () {
         // After the data from the AJAX request comes back
         .then(function (response) {
             // Saving the image_original_url property
-            var topicImg = response.data.image_original_url;
+            var imageUrl = response.data.image_original_url;
 
             // Creating and storing an image tag
             var topicImg = $("<img>");
 
-            // Setting the catImage src attribute to imageUrl
-            topicImg.attr("src", topicImg);
-            topicImg.attr("alt", "cat image");
+            // Setting the Image src attribute to topicImg
+            topicImg.attr("src", imageUrl);
+            topicImg.attr("alt", "topic image");
 
-            // Prepending the catImage to the images div
+            // Prepending the Image to the images div
             $("#images").prepend(randomImg);
         });
 });
