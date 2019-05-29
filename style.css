@@ -23,10 +23,12 @@ h1{
 
 #topic-input{
     align-content: center;
-    margin-left: 33%;
+    /* margin-left: 33%; */
 }
 
-#add-topic{
+
+#designer-add{
+    font-family: Georgia, 'Times New Roman', Times, serif;
 
 }
 
