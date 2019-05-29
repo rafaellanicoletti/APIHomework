@@ -40,12 +40,11 @@ function btnCreation() {
 for (var i = 0; i < topics.length; i++) {
     // Then dynamicaly generating buttons for each movie in the array.
     var btn = $("<button type='button' class='btn btn-outline-*'>");
-    btn.addClass("topic");
     // Adding a data-attribute with a value of the movie at index i
     btn.attr("data-name", topics[i]);
     btn.text(movies[i]);
     // Adding the button to the HTML
-    $("#buttons-view").append(a);
+    $("#buttons-view").append(btn);
 }
       }
 
@@ -54,62 +53,16 @@ for (var i = 0; i < topics.length; i++) {
 
 // This function handles events where one button is clicked
 $("#add-topic").on("click", function (event) {
-    // event.preventDefault() prevents the form from trying to submit itself.
-    // We're using a form so that the user can hit enter instead of clicking the button if they want
     event.preventDefault();
-
     // This line will grab the text from the input box
-    var movie = $("#movie-input").val().trim();
-    // The movie from the textbox is then added to our array
-    movies.push(movie);
+    var topics = $("#topic-input").val().trim();
+    // Topic is added to  array
+    topics.push(topics);
 
     // calling renderButtons which handles the processing of our movie array
-    renderButtons();
+    btnCreation();
 });
 
+btnCreation();
 
-
-// < !--Retrieved data will be dumped here-- >
-    <div class="city"></div>
-    <div class="wind"></div>
-    <div class="humidity"></div>
-    <div class="temp"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        // This is our API key
-        var APIKey = "166a433c57516f51dfab1f7edaed8413";
-    
-        // Here we are building the URL we need to query the database
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-          "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey;
-    
-        // Here we run our AJAX call to the OpenWeatherMap API
-    $.ajax({
-            url: queryURL,
-        method: "GET"
-      })
-        // We store all of the retrieved data inside of an object called "response"
-      .then(function(response) {
-
-            // Log the queryURL
-            console.log(queryURL);
-
-        // Log the resulting object
-        console.log(response);
-
-        // Transfer content to HTML
-        $(".city").html("<h1>" + response.name + " Weather Details</h1>");
-        $(".wind").text("Wind Speed: " + response.wind.speed);
-        $(".humidity").text("Humidity: " + response.main.humidity);
-        $(".temp").text("Temperature (F) " + response.main.temp);
-
-        // Log the data in the console as well
-        console.log("Wind Speed: " + response.wind.speed);
-        console.log("Humidity: " + response.main.humidity);
-        console.log("Temperature (F): " + response.main.temp);
-      });
-  </script>
-</body >
-
-</html >
 
