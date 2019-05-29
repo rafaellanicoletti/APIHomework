@@ -22,14 +22,15 @@ var topics = ["Louis Vuitton" , "Chanel", "Fendi", "Moschino" , "Gucci"];
 
 // API key.
 var APIKey = "FmlEOGsL33Fa0IBUgxcI5J9meYsV0kkK";
-var queryURL ="https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=" + APIKey + "&limit=10";
+// var queryURL ="https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + APIKey + "&limit=10";
 
 
 // Click add
-$("#topic-input").on("click", function () {
-
-    // Storing our giphy API URL for a random cat image
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=" + APIKey + "&limit=10";
+$("#buttons-view").on("click", ".btn", function () {
+    console.log($(this).data().name)
+    // Storing our giphy API URL for a random cat 
+    var topic = $(this).data().name
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + APIKey + "&limit=10";
 
     // Perfoming an AJAX GET request to our queryURL
     $.ajax({
@@ -37,22 +38,32 @@ $("#topic-input").on("click", function () {
         method: "GET"
     })
 
+
         // After the data from the AJAX request comes back
         .then(function (response) {
-            // Saving the image_original_url property
-            var imageUrl = response.data.image_original_url;
+            console.log(response.data.length);
+            for (var x = 0; x < response.data.length; x++){
+                // Saving the image_original_url property
+                console.log(response.data[x].images.original.url)
 
-            // Creating and storing an image tag
-            var topicImg = $("<img>");
+                var imageUrl = response.data[x].images.original.url;
+                console.log(imageUrl)
 
-            // Setting the Image src attribute to topicImg
-            topicImg.attr("src", imageUrl);
-            topicImg.attr("alt", "topic image");
+                // Creating and storing an image tag
+                var topicImg = $("<img>");
 
-            // Prepending the Image to the images div
-            $("#images").prepend(randomImg);
-        });
-});
+                // Setting the Image src attribute to topicImg
+                topicImg.attr("src", imageUrl);
+                topicImg.attr("alt", "topic image");
+
+                // Prepending the Image to the images div
+                $("#images").prepend(topicImg);
+                } 
+            
+        
+})});
+            
+        
 
 
 
@@ -65,21 +76,21 @@ function btnCreation() {
 
     // Looping through the array of movies
     for (var i = 0; i < topics.length; i++) {
-    var btn = $("<button type='button' class='btn btn-dark'>");
-    // Adding a data-attribute with a value of the movie at index i
-    btn.attr("data-name", topics[i]);
-    btn.html(topics[i]);
-    // Adding the button to the HTML
-    $("#buttons-view").append(btn);
+        var btn = $("<button type='button' class='btn btn-dark'>");
+        // Adding a data-attribute with a value of the movie at index i
+        btn.attr("data-name", topics[i]);
+        btn.html(topics[i]);
+        // Adding the button to the HTML
+        $("#buttons-view").append(btn);
+    }
 }
-      }
 
 // When the user clicks on a button, the page should grab 10 static, non - animated gif images from the GIPHY API and place
 // them on the page.
 
 // This function handles events where one button is clicked
 $("#add-topic").on("click", function (event) {
-    event.preventDefault();
+
     // This line will grab the text from the input box
     var topic = $("#topic-input").val().trim();
     // Topic is added to  array
@@ -90,5 +101,3 @@ $("#add-topic").on("click", function (event) {
 });
 
 btnCreation();
-
-
