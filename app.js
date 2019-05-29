@@ -22,15 +22,39 @@ var topics = ["Louis Vuitton" , "Chanel", "Fendi", "Moschino" , "Gucci"];
 
 // API key.
 var APIKey = "FmlEOGsL33Fa0IBUgxcI5J9meYsV0kkK";
-topic = "Michael Kors"
-var queryURL ="https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + APIKey + "&limit=10";
+var queryURL ="https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=" + APIKey + "&limit=10";
 
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function (response) {
-    console.log(response);
+
+// Click add
+$("#topic-input").on("click", function () {
+
+    // Storing our giphy API URL for a random cat image
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=" + APIKey + "&limit=10";
+
+    // Perfoming an AJAX GET request to our queryURL
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+
+        // After the data from the AJAX request comes back
+        .then(function (response) {
+            // Saving the image_original_url property
+            var topicImg = response.data.image_original_url;
+
+            // Creating and storing an image tag
+            var topicImg = $("<img>");
+
+            // Setting the catImage src attribute to imageUrl
+            topicImg.attr("src", topicImg);
+            topicImg.attr("alt", "cat image");
+
+            // Prepending the catImage to the images div
+            $("#images").prepend(randomImg);
+        });
 });
+
+
 
 // Your app should take the topics in this array and create buttons in your HTML.
 // Try using a loop that appends a button for each string in the array.
@@ -41,7 +65,7 @@ function btnCreation() {
 
     // Looping through the array of movies
     for (var i = 0; i < topics.length; i++) {
-    var btn = $("<button type='button' class='btn btn-outline-*'>");
+    var btn = $("<button type='button' class='btn btn-dark'>");
     // Adding a data-attribute with a value of the movie at index i
     btn.attr("data-name", topics[i]);
     btn.html(topics[i]);
@@ -68,32 +92,3 @@ $("#add-topic").on("click", function (event) {
 btnCreation();
 
 
-// Event listener for our cat-button
-$("#cat-button").on("click", function () {
-
-    // Storing our giphy API URL for a random cat image
-    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats";
-
-    // Perfoming an AJAX GET request to our queryURL
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-
-        // After the data from the AJAX request comes back
-        .then(function (response) {
-
-            // Saving the image_original_url property
-            var imageUrl = response.data.image_original_url;
-
-            // Creating and storing an image tag
-            var catImage = $("<img>");
-
-            // Setting the catImage src attribute to imageUrl
-            catImage.attr("src", imageUrl);
-            catImage.attr("alt", "cat image");
-
-            // Prepending the catImage to the images div
-            $("#images").prepend(catImage);
-        });
-});
