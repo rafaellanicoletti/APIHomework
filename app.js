@@ -50,11 +50,12 @@ $("#buttons-view").on("click", ".btn", function () {
                 console.log(imageUrl)
 
                 // Creating and storing an image tag
-                var topicImg = $("<img>");
+                var topicImg = $("<iframe height='300' width='300' class='gifs'>");
 
                 // Setting the Image src attribute to topicImg
                 topicImg.attr("src", imageUrl);
                 topicImg.attr("alt", "topic image");
+                        
 
                 // Prepending the Image to the images div
                 $("#images").prepend(topicImg);
@@ -63,9 +64,6 @@ $("#buttons-view").on("click", ".btn", function () {
         
 })});
             
-        
-
-
 
 // Your app should take the topics in this array and create buttons in your HTML.
 // Try using a loop that appends a button for each string in the array.
@@ -101,3 +99,20 @@ $("#add-topic").on("click", function (event) {
 });
 
 btnCreation();
+
+
+
+// $(".gif").on("click", function () {
+//     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+//     var state = $(this).attr("data-state");
+//     // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+//     // Then, set the image's data-state to animate
+//     // Else set src to the data-still value
+//     if (state === "still") {
+//         $(this).attr("src", $(this).attr("data-animate"));
+//         $(this).attr("data-state", "animate");
+//     } else {
+//         $(this).attr("src", $(this).attr("data-still"));
+//         $(this).attr("data-state", "still");
+//     }
+// });
